@@ -6,7 +6,7 @@ const Services = () => {
   return (
     <motion.section
       id="services"
-      className="p-8 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 min-h-screen"
+      className="p-8 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 min-h-screen flex flex-col justify-center"
       initial={{ x: '-100vw' }}
       animate={{ x: 0 }}
       transition={{ type: 'spring', stiffness: 50 }}
