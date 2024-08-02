@@ -10,6 +10,9 @@ const cardVariants = {
   visible: { opacity: 1, scale: 1, rotateX: 0, rotateY: 0 },
 };
 
+const gradientLight = 'linear-gradient(189deg, rgba(131,58,180,1) 0%, rgba(70,41,67,1) 11%, rgba(76,51,240,1) 38%, rgba(253,29,29,1) 58%, rgba(252,176,69,1) 71%, rgba(66,172,162,1) 88%)';
+const gradientDark = 'linear-gradient(189deg, rgba(131,58,180,0.8) 0%, rgba(70,41,67,0.8) 11%, rgba(76,51,240,0.8) 38%, rgba(253,29,29,0.8) 58%, rgba(252,176,69,0.8) 71%, rgba(66,172,162,0.8) 88%)';
+
 const Services = () => {
   const [hover, setHover] = useState(false);
 
@@ -45,21 +48,14 @@ const Services = () => {
         >
           {splitText('Services')}
           <motion.div
-            className="absolute left-0 bottom-0 bg-blue-500 h-1"
+            className="absolute left-0 bottom-0 h-1"
             initial={{ width: 0 }}
             animate={{ width: hover ? '100%' : 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
-            style={{ bottom: '-0.5rem' }}
-          />
-          <motion.div
-            className="absolute left-0 bottom-0 h-1 w-1 bg-blue-500"
-            animate={{
-              scaleX: hover ? [1, 0.5, 1] : 0,
-              scaleY: hover ? [1, 0.5, 1] : 0,
-              rotate: hover ? [0, 180, 0] : 0,
+            style={{ 
+              background: gradientLight,
+              bottom: '-0.5rem'
             }}
-            transition={{ duration: 1, ease: 'easeInOut' }}
-            style={{ bottom: '-0.5rem', left: '50%', transformOrigin: 'center' }}
           />
         </motion.h2>
       </div>

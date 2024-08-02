@@ -17,12 +17,22 @@ const gradientDark = 'linear-gradient(189deg, rgba(131,58,180,0.8) 0%, rgba(70,4
 
 const textVariants = {
   hover: {
-    x: [0, 50, -50, 50, -50, 0],
-    y: [0, 50, 50, -50, -50, 0],
+    x: [0, 20, -20, 20, -20, 0],
     transition: {
-      x: { duration: 1, ease: "easeInOut" },
-      y: { duration: 1, ease: "easeInOut" },
+      duration: 1,
+      ease: "easeInOut",
       loop: Infinity
+    }
+  }
+};
+
+const underlineVariants = {
+  hover: {
+    width: '100%',
+    rotateX: [0, 10],
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
     }
   }
 };
@@ -50,13 +60,21 @@ const About = () => {
       animate={{ x: 0 }}
       transition={{ type: 'spring', stiffness: 50 }}
     >
-      <h2 className="text-4xl font-bold text-left">About Me</h2>
+      <h2 className="text-4xl font-bold text-left mt-5 relative">
+        About Me
+        <motion.div
+          className="absolute left-0 bottom-0 w-full h-1 bg-gray-900 dark:bg-gray-200"
+          style={{ background: gradientLight }}
+          variants={underlineVariants}
+          whileHover="hover"
+        />
+      </h2>
       <p className="mt-4 text-lg text-left">
         {splitText("Hello. I'm a web designer who codes. I strive to create simple, original, and impactful user experiences. As a web designer, my passion lies in creating visually stunning and user-friendly websites that leave a lasting impression on visitors. I believe that the web is a powerful medium that allows me to blend creativity with technology to craft unique online experiences.")}
       </p>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
         <motion.div
-          className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg perspective-1000"
+          className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg"
           whileHover={{ scale: 1.05, rotateY: 10, rotateX: -5 }}
           whileTap={{ scale: 0.95, rotateY: -10, rotateX: 5 }}
           transition={{ type: 'spring', stiffness: 200, damping: 10 }}
@@ -113,7 +131,7 @@ const About = () => {
           </ul>
         </motion.div>
         <motion.div
-          className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg perspective-1000"
+          className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg"
           whileHover={{ rotateY: -10, rotateX: 10, scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 200, damping: 10 }}
@@ -125,7 +143,7 @@ const About = () => {
           </p>
         </motion.div>
         <motion.div
-          className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg perspective-1000"
+          className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg"
           whileHover={{ rotateY: -10, rotateX: 10, scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 200, damping: 10 }}
@@ -148,7 +166,7 @@ const About = () => {
         </motion.div>
       </div>
       <motion.div
-        className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg mt-8 relative perspective-1000"
+        className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg mt-8 relative"
         whileHover={{ 
           x: "100%", // Move to the right
           scale: 1.1, // Slightly scale up
