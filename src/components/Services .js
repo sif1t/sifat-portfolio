@@ -26,7 +26,9 @@ const Services = () => {
             transition={{ duration: 1 }}
           />
           <h3 className="text-2xl font-semibold mb-2">Web Design</h3>
-          <p>Creating visually appealing and user-friendly web designs that are tailored to meet your needs.</p>
+          <p>🚀 ELEVATE YOUR BRAND WITH EXCEPTIONAL WEB DESIGN 🚀
+
+Transform your online presence with stunning, user-focused designs that capture attention and drive engagement. Let’s create a website that not only looks amazing but also delivers a seamless user experience. 🌟</p>
         </div>
         <div className="bg-white dark:bg-gray-700 p-6 shadow-md rounded-lg flex flex-col items-center">
           <motion.img 
@@ -38,7 +40,7 @@ const Services = () => {
             transition={{ duration: 1 }}
           />
           <h3 className="text-2xl font-semibold mb-2">Web Development</h3>
-          <p>Developing robust and scalable web applications using the latest technologies.</p>
+          <p>"🔧 Web Development: Bringing your ideas to life with custom-built, scalable web solutions. From sleek interfaces to powerful functionality, we ensure your site performs seamlessly across all devices. 🚀"</p>
         </div>
         <div className="bg-white dark:bg-gray-700 p-6 shadow-md rounded-lg flex flex-col items-center">
           <motion.img 
@@ -50,7 +52,7 @@ const Services = () => {
             transition={{ duration: 1 }}
           />
           <h3 className="text-2xl font-semibold mb-2">WordPress</h3>
-          <p>Offering customized WordPress solutions for your website needs.</p>
+          <p>"🛠️ WordPress Development: Transforming your vision into a dynamic, user-friendly WordPress site. Whether you need a custom theme or plugin, we handle it all to boost your online presence with ease. 🌐"</p>
         </div>
       </div>
     </motion.section>
