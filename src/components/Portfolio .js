@@ -14,6 +14,7 @@ const Portfolio = () => {
       liveLink: "#",
       clientLink: "#",
       serverLink: "#",
+      image: "/path/to/nota-corda-image.jpg", // Replace with the actual image path
     },
     {
       title: "Project Alpha",
@@ -25,6 +26,7 @@ const Portfolio = () => {
       liveLink: "#",
       clientLink: "#",
       serverLink: "#",
+      image: "/path/to/project-alpha-image.jpg", // Replace with the actual image path
     },
     {
       title: "E-commerce Platform",
@@ -36,6 +38,7 @@ const Portfolio = () => {
       liveLink: "#",
       clientLink: "#",
       serverLink: "#",
+      image: "/path/to/e-commerce-platform-image.jpg", // Replace with the actual image path
     },
     {
       title: "Fitness Tracker",
@@ -47,6 +50,7 @@ const Portfolio = () => {
       liveLink: "#",
       clientLink: "#",
       serverLink: "#",
+      image: "/path/to/fitness-tracker-image.jpg", // Replace with the actual image path
     },
   ];
 
@@ -63,10 +67,11 @@ const Portfolio = () => {
         {projects.map((project, index) => (
           <motion.div 
             key={index} 
-            className="bg-gray-200 dark:bg-gray-700 p-6 rounded-lg shadow-lg transform transition-transform duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            className="card bg-gray-200 dark:bg-gray-700 p-6 rounded-lg shadow-lg transform transition-transform duration-500 hover:-translate-y-2 hover:shadow-2xl relative"
             whileHover={{ scale: 1.05 }}
           >
-            <div>
+            <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" />
+            <div className="relative z-10">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">{project.title}</h3>
               <p className="mt-4 font-semibold text-gray-800 dark:text-gray-300">Features :</p>
               <ul className="list-disc list-inside mt-2 text-gray-700 dark:text-gray-400">
@@ -75,7 +80,7 @@ const Portfolio = () => {
                 ))}
               </ul>
             </div>
-            <div className="mt-4 flex justify-between items-center">
+            <div className="mt-4 flex justify-between items-center relative z-10">
               <a href={project.liveLink} className="text-blue-500 dark:text-blue-300 hover:underline">View Live →</a>
               <div className="flex items-center space-x-2">
                 <a href={project.clientLink} className="text-blue-500 dark:text-blue-300 hover:underline">Client</a>
