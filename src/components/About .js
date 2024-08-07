@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+
 const skills = [
   { name: 'HTML', percentage: 90 },
   { name: 'CSS', percentage: 85 },

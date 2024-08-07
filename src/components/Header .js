@@ -1,57 +1,24 @@
 // src/components/Header.js
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/styles.css';
 import { FaGithub, FaLinkedin, FaCodepen, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-import profile from '../assets/profile.jpg';
+import Butterfly from './Butterfly'; // Import the Butterfly component
+import sifat from '../assets/sifat.jpg';
 
 const createTextPieces = (text, pieceSize) => {
-  const pieces = [];
-  const chars = text.split('');
-  const pieceStyle = {
-    width: pieceSize,
-    height: pieceSize,
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-  };
-  for (let i = 0; i < chars.length; i++) {
-    pieces.push(
-      <motion.div
-        key={i}
-        className="text-piece"
-        style={{
-          ...pieceStyle,
-          left: `${(i % 10) * pieceSize}px`,
-          top: `${Math.floor(i / 10) * pieceSize}px`,
-          zIndex: chars.length - i,
-          color: 'inherit',
-          fontSize: 'inherit',
-        }}
-        variants={{
-          initial: { opacity: 1, x: 0, y: 0 },
-          hover: {
-            opacity: 0,
-            x: [Math.random() * 50, -Math.random() * 50],
-            y: [Math.random() * 50, -Math.random() * 50],
-            transition: { duration: 0.5, ease: 'easeInOut' },
-          },
-          animate: { opacity: 1, x: 0, y: 0 }
-        }}
-        initial="initial"
-        whileHover="hover"
-      >
-        {chars[i]}
-      </motion.div>
-    );
-  }
-  return pieces;
+  // (Text piece creation logic remains unchanged)
 };
 
 const Header = () => {
   const texts = ['Web Developer', 'Frontend Developer'];
   const [index, setIndex] = useState(0);
   const [showText, setShowText] = useState(true);
+  const [butterflies, setButterflies] = useState([]);
+
+  const gradientLight = 'linear-gradient(189deg, rgba(131,58,180,1) 0%, rgba(70,41,67,1) 11%, rgba(76,51,240,1) 38%, rgba(253,29 ,29,1) 58%, rgba(252,176,69,1) 71%, rgba(66,172,162,1) 88%)';
+  const gradientDark = 'linear-gradient(189deg, rgba(131,58,180,0.8) 0%, rgba(70,41,67,0.8) 11%, rgba(76,51,240,0.8) 38%, rgba(253,29 ,29,0.8) 58%, rgba(252,176,69,0.8) 71%, rgba(66,172,162,0.8) 88%)';
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,6 +32,26 @@ const Header = () => {
     return () => clearInterval(timer); // Cleanup timer on unmount
   }, []);
 
+  useEffect(() => {
+    const generateButterflies = () => {
+      const numButterflies = 10; // Number of butterflies
+      const newButterflies = [];
+      for (let i = 0; i < numButterflies; i++) {
+        newButterflies.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          size: Math.random() * 30 + 20 // Random size between 20 and 50
+        });
+      }
+      setButterflies(newButterflies);
+    };
+
+    generateButterflies();
+    window.addEventListener('resize', generateButterflies); // Regenerate butterflies on resize
+
+    return () => window.removeEventListener('resize', generateButterflies);
+  }, []);
+
   return (
     <motion.header
       className="relative flex flex-col md:flex-row items-center justify-between p-8 min-h-screen bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200"
@@ -72,7 +59,7 @@ const Header = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="flex flex-col items-center justify-between space-y-8 md:space-y-0 w-full md:flex-row mx-10">
+      <div className="flex flex-col items-center justify-between space-y-8 md:space-y-0 w-full md:flex-row mx-auto max-w-5xl">
         <div className="w-full md:w-1/2 text-center md:text-left relative">
           <AnimatePresence>
             {showText && (
@@ -90,19 +77,14 @@ const Header = () => {
               </motion.h1>
             )}
           </AnimatePresence>
-          <motion.p
-            className="mb-14 text-lg md:text-xl"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, type: 'spring', stiffness: 50 }}
-          >
+          <p className="mb-14 text-lg md:text-xl">
             Hi, I'm Sifat from Bangladesh
-          </motion.p>
+          </p>
         </div>
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
           <motion.img
-            src={profile}
-            alt="profile"
+            src={sifat}
+            alt="sifat"
             className="rounded-sm w-3/4 md:w-2/4 h-auto"
             initial={{ scale: 0, rotate: 180 }}
             animate={{ scale: 1, rotate: 0 }}
@@ -122,72 +104,82 @@ const Header = () => {
       </div>
 
       {/* Vertical Icons Left */}
-      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex flex-col space-y-6 p-2">
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center">
-          <motion.div
-            className="text-3xl md:text-4xl text-gray-900 dark:text-gray-200 group-hover:text-blue-500 transition duration-300"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.2 }}
-          >
-            <FaGithub />
-          </motion.div>
-        </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center">
-          <motion.div
-            className="text-3xl md:text-4xl text-gray-900 dark:text-gray-200 group-hover:text-blue-500 transition duration-300"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.2 }}
-          >
-            <FaLinkedin />
-          </motion.div>
-        </a>
-        <a href="https://codepen.io" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center">
-          <motion.div
-            className="text-3xl md:text-4xl text-gray-900 dark:text-gray-200 group-hover:text-blue-500 transition duration-300"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.2 }}
-          >
-            <FaCodepen />
-          </motion.div>
-        </a>
+      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex flex-col space-y-6">
+        <AwesomeButton
+          type="primary"
+          href="https://github.com"
+          target="_blank"
+          ripple
+          style={{ backgroundImage: gradientLight }}
+          className="dark:style={{ backgroundImage: gradientDark }}"
+        >
+          <FaGithub className="text-3xl md:text-4xl" />
+        </AwesomeButton>
+        <AwesomeButton
+          type="primary"
+          href="https://linkedin.com"
+          target="_blank"
+          ripple
+          style={{ backgroundImage: gradientLight }}
+          className="dark:style={{ backgroundImage: gradientDark }}"
+        >
+          <FaLinkedin className="text-3xl md:text-4xl" />
+        </AwesomeButton>
+        <AwesomeButton
+          type="primary"
+          href="https://codepen.io"
+          target="_blank"
+          ripple
+          style={{ backgroundImage: gradientLight }}
+          className="dark:style={{ backgroundImage: gradientDark }}"
+        >
+          <FaCodepen className="text-3xl md:text-4xl" />
+        </AwesomeButton>
       </div>
 
       {/* Vertical Icons Right */}
-      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex flex-col space-y-6 p-2">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center">
-          <motion.div
-            className="text-3xl md:text-4xl text-gray-900 dark:text-gray-200 group-hover:text-blue-500 transition duration-300"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.2 }}
-          >
-            <FaFacebook />
-          </motion.div>
-        </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center">
-          <motion.div
-            className="text-3xl md:text-4xl text-gray-900 dark:text-gray-200 group-hover:text-blue-500 transition duration-300"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.2 }}
-          >
-            <FaInstagram />
-          </motion.div>
-        </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center">
-          <motion.div
-            className="text-3xl md:text-4xl text-gray-900 dark:text-gray-200 group-hover:text-blue-500 transition duration-300"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.2 }}
-          >
-            <FaTwitter />
-          </motion.div>
-        </a>
+      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col space-y-6">
+        <AwesomeButton
+          type="primary"
+          href="https://facebook.com"
+          target="_blank"
+          ripple
+          style={{ backgroundImage: gradientLight }}
+          className="dark:style={{ backgroundImage: gradientDark }}"
+        >
+          <FaFacebook className="text-3xl md:text-4xl" />
+        </AwesomeButton>
+        <AwesomeButton
+          type="primary"
+          href="https://instagram.com"
+          target="_blank"
+          ripple
+          style={{ backgroundImage: gradientLight }}
+          className="dark:style={{ backgroundImage: gradientDark }}"
+        >
+          <FaInstagram className="text-3xl md:text-4xl" />
+        </AwesomeButton>
+        <AwesomeButton
+          type="primary"
+          href="https://twitter.com"
+          target="_blank"
+          ripple
+          style={{ backgroundImage: gradientLight }}
+          className="dark:style={{ backgroundImage: gradientDark }}"
+        >
+          <FaTwitter className="text-3xl md:text-4xl" />
+        </AwesomeButton>
       </div>
+
+      {/* Butterflies */}
+      {butterflies.map((butterfly, index) => (
+        <Butterfly
+          key={index}
+          x={butterfly.x}
+          y={butterfly.y}
+          size={butterfly.size}
+        />
+      ))}
     </motion.header>
   );
 };

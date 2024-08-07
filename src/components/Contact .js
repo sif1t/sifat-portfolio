@@ -1,15 +1,17 @@
-// src/components/Contact.js
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebook, FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css'; // Default styles, you can customize or add your own
 
+const gradientLight = 'linear-gradient(189deg, rgba(131,58,180,1) 0%, rgba(70,41,67,1) 11%, rgba(76,51,240,1) 38%, rgba(253,29,29,1) 58%, rgba(252,176,69,1) 71%, rgba(66,172,162,1) 88%)';
+const gradientDark = 'linear-gradient(189deg, rgba(131,58,180,0.8) 0%, rgba(70,41,67,0.8) 11%, rgba(76,51,240,0.8) 38%, rgba(253,29,29,0.8) 58%, rgba(252,176,69,0.8) 71%, rgba(66,172,162,0.8) 88%)';
+
 const Contact = () => {
   return (
     <motion.section
       id="contact"
-      className="min-h-screen w-full flex items-center justify-center p-8 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200"
+      className="min-h-screen w-full flex items-center justify-center p-8 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 relative"
       initial={{ x: '-100vw' }}
       animate={{ x: 0 }}
       transition={{ type: 'spring', stiffness: 50 }}
@@ -78,6 +80,14 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      {/* Gradient Line */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-1"
+        style={{
+          background: `linear-gradient(189deg, rgba(131,58,180,1) 0%, rgba(70,41,67,1) 11%, rgba(76,51,240,1) 38%, rgba(253,29,29,1) 58%, rgba(252,176,69,1) 71%, rgba(66,172,162,1) 88%)`,
+          filter: 'brightness(0.8)' // Adjusts for dark mode if needed
+        }}
+      />
     </motion.section>
   );
 };
