@@ -10,7 +10,19 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-md z-50">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-        <div className="text-2xl font-bold text-gray-800 dark:text-white">Sifat</div>
+        <motion.div
+          className="text-2xl font-bold text-gray-800 dark:text-white"
+          initial={{ rotateY: 0, rotateX: 0, scale: 1 }}
+          whileHover={{ 
+            rotateY: 15, 
+            rotateX: 15, 
+            scale: 1.1, 
+            transition: { type: 'spring', stiffness: 400, damping: 10 }
+          }}
+          style={{ perspective: 1000 }}
+        >
+          Sifat
+        </motion.div>
         <motion.button
           className="text-gray-800 dark:text-white md:hidden"
           onClick={() => setIsOpen(!isOpen)}

@@ -1,186 +1,164 @@
-// src/components/Header.js
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
-import { FaGithub, FaLinkedin, FaCodepen, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-import Butterfly from './Butterfly'; // Import the Butterfly component
-import sifat from '../assets/sifat.jpg';
-
-const createTextPieces = (text, pieceSize) => {
-  // (Text piece creation logic remains unchanged)
-};
+import { FaPlay } from 'react-icons/fa';
+import profileImage from '../assets/sifat.jpg';
 
 const Header = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   const texts = ['Web Developer', 'Frontend Developer'];
-  const [index, setIndex] = useState(0);
-  const [showText, setShowText] = useState(true);
-  const [butterflies, setButterflies] = useState([]);
-
-  const gradientLight = 'linear-gradient(189deg, rgba(131,58,180,1) 0%, rgba(70,41,67,1) 11%, rgba(76,51,240,1) 38%, rgba(253,29 ,29,1) 58%, rgba(252,176,69,1) 71%, rgba(66,172,162,1) 88%)';
-  const gradientDark = 'linear-gradient(189deg, rgba(131,58,180,0.8) 0%, rgba(70,41,67,0.8) 11%, rgba(76,51,240,0.8) 38%, rgba(253,29 ,29,0.8) 58%, rgba(252,176,69,0.8) 71%, rgba(66,172,162,0.8) 88%)';
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setShowText(false);
-      setTimeout(() => {
-        setIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        setShowText(true);
-      }, 1000); // Delay for the new text to appear after 1 second
-    }, 3000); // Change text every 3 seconds
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+    }, 3000); // Duration of text display
 
-    return () => clearInterval(timer); // Cleanup timer on unmount
+    return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const generateButterflies = () => {
-      const numButterflies = 10; // Number of butterflies
-      const newButterflies = [];
-      for (let i = 0; i < numButterflies; i++) {
-        newButterflies.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          size: Math.random() * 30 + 20 // Random size between 20 and 50
-        });
-      }
-      setButterflies(newButterflies);
-    };
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
-    generateButterflies();
-    window.addEventListener('resize', generateButterflies); // Regenerate butterflies on resize
+  const handleVideoClick = () => {
+    setIsVideoOpen(true);
+  };
 
-    return () => window.removeEventListener('resize', generateButterflies);
-  }, []);
+  const handleCloseVideo = () => {
+    setIsVideoOpen(false);
+  };
 
   return (
-    <motion.header
-      className="relative flex flex-col md:flex-row items-center justify-between p-8 min-h-screen bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
-      <div className="flex flex-col items-center justify-between space-y-8 md:space-y-0 w-full md:flex-row mx-auto max-w-5xl">
-        <div className="w-full md:w-1/2 text-center md:text-left relative">
-          <AnimatePresence>
-            {showText && (
-              <motion.h1
-                key={index}
-                className="relative inline-block text-4xl md:text-7xl font-bold"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="relative inline-block">
-                  {createTextPieces(texts[index], 60)}
-                </div>
-              </motion.h1>
-            )}
-          </AnimatePresence>
-          <p className="mb-14 text-lg md:text-xl">
-            Hi, I'm Sifat from Bangladesh
-          </p>
-        </div>
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+    <>
+      <motion.header
+        className={`relative flex flex-col md:flex-row items-center justify-between min-h-screen px-8 md:px-12 py-20 transition-colors duration-500 ${
+          darkMode ? 'bg-dark text-light' : 'bg-light text-dark'
+        }`}
+        initial={{ opacity: 0, translateY: -50 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+        style={{ perspective: '1200px' }} // Enhanced perspective for depth
+      >
+        <motion.div
+          className="flex flex-col items-start md:w-1/2 space-y-10 md:space-y-12 lg:space-y-16"
+          initial={{ opacity: 0, translateX: -50 }}
+          animate={{ opacity: 1, translateX: 0 }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
+        >
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold leading-tight mb-8"
+            initial={{ opacity: 0, translateY: 20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+          >
+            HI, I'M SIFAT!<br />
+            <span className="text-highlight">
+              {texts[currentTextIndex]}
+            </span>
+          </motion.h1>
+          <motion.p
+            className="text-lg md:text-xl leading-relaxed mb-8"
+            initial={{ opacity: 0, translateY: 20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.4 }}
+          >
+            Hello. I’m a web designer who codes. I strive to create simple, original, and impactful user experiences. As a web designer, my passion lies in creating visually stunning and user-friendly websites that leave a lasting impression on visitors. I believe that the web is a powerful medium that allows me to blend creativity with technology to craft unique online experiences.
+          </motion.p>
+          <div className="flex items-center space-x-4">
+            <AwesomeButton
+              type="Minimal"
+              href="#"
+              className={`font-semibold ${
+                darkMode ? 'bg-accent-dark text-dark' : 'bg-accent text-light'
+              }`}
+            >
+              Download Cv
+            </AwesomeButton>
+            <button 
+              onClick={handleVideoClick}
+              className={`p-2 rounded-full transition duration-300 ${
+                darkMode ? 'border-2 border-highlight text-highlight hover:bg-highlight hover:text-dark' 
+                : 'border-2 border-highlight-dark text-highlight-dark hover:bg-highlight-dark hover:text-light'
+              }`}
+            >
+              <FaPlay className="text-2xl" />
+            </button>
+          </div>
+        </motion.div>
+        <motion.div
+          className="flex justify-center items-center md:w-1/2 mt-12 md:mt-0"
+          initial={{ scale: 0.8, opacity: 0, translateY: 30 }}
+          animate={{ scale: 1, opacity: 1, translateY: 0 }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
+          style={{ transformStyle: 'preserve-3d' }} // Ensure 3D transformations are applied
+        >
           <motion.img
-            src={sifat}
-            alt="sifat"
-            className="rounded-sm w-3/4 md:w-2/4 h-auto"
-            initial={{ scale: 0, rotate: 180 }}
-            animate={{ scale: 1, rotate: 0 }}
+            src={profileImage}
+            alt="Profile"
+            className="rounded-lg"
+            initial={{ scale: 0.8, rotateX: 10 }}
+            animate={{ scale: 1, rotateX: 0 }}
             transition={{
               type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              duration: 2,
+              stiffness: 300,
+              damping: 30,
+              duration: 1.5,
             }}
             whileHover={{
-              scale: 1.1,
-              rotate: [0, 10, -10, 0],
+              scale: 1.05,
+              rotate: [0, 5, -5, 0],
               transition: { type: 'spring', stiffness: 300, damping: 20 },
             }}
+            style={{ filter: darkMode ? 'brightness(70%)' : 'brightness(100%)' }}
           />
+        </motion.div>
+        {/* Dark Mode Toggle */}
+        <div className="absolute top-4 right-4">
+          <button
+            onClick={toggleDarkMode}
+            className="p-2 rounded-full bg-transparent border-2 border-current transition duration-300"
+          >
+            {darkMode ? '☀️' : '🌙'}
+          </button>
         </div>
-      </div>
+      </motion.header>
 
-      {/* Vertical Icons Left */}
-      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex flex-col space-y-6">
-        <AwesomeButton
-          type="primary"
-          href="https://github.com"
-          target="_blank"
-          ripple
-          style={{ backgroundImage: gradientLight }}
-          className="dark:style={{ backgroundImage: gradientDark }}"
-        >
-          <FaGithub className="text-3xl md:text-4xl" />
-        </AwesomeButton>
-        <AwesomeButton
-          type="primary"
-          href="https://linkedin.com"
-          target="_blank"
-          ripple
-          style={{ backgroundImage: gradientLight }}
-          className="dark:style={{ backgroundImage: gradientDark }}"
-        >
-          <FaLinkedin className="text-3xl md:text-4xl" />
-        </AwesomeButton>
-        <AwesomeButton
-          type="primary"
-          href="https://codepen.io"
-          target="_blank"
-          ripple
-          style={{ backgroundImage: gradientLight }}
-          className="dark:style={{ backgroundImage: gradientDark }}"
-        >
-          <FaCodepen className="text-3xl md:text-4xl" />
-        </AwesomeButton>
-      </div>
-
-      {/* Vertical Icons Right */}
-      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col space-y-6">
-        <AwesomeButton
-          type="primary"
-          href="https://facebook.com"
-          target="_blank"
-          ripple
-          style={{ backgroundImage: gradientLight }}
-          className="dark:style={{ backgroundImage: gradientDark }}"
-        >
-          <FaFacebook className="text-3xl md:text-4xl" />
-        </AwesomeButton>
-        <AwesomeButton
-          type="primary"
-          href="https://instagram.com"
-          target="_blank"
-          ripple
-          style={{ backgroundImage: gradientLight }}
-          className="dark:style={{ backgroundImage: gradientDark }}"
-        >
-          <FaInstagram className="text-3xl md:text-4xl" />
-        </AwesomeButton>
-        <AwesomeButton
-          type="primary"
-          href="https://twitter.com"
-          target="_blank"
-          ripple
-          style={{ backgroundImage: gradientLight }}
-          className="dark:style={{ backgroundImage: gradientDark }}"
-        >
-          <FaTwitter className="text-3xl md:text-4xl" />
-        </AwesomeButton>
-      </div>
-
-      {/* Butterflies */}
-      {butterflies.map((butterfly, index) => (
-        <Butterfly
-          key={index}
-          x={butterfly.x}
-          y={butterfly.y}
-          size={butterfly.size}
-        />
-      ))}
-    </motion.header>
+      {/* Video Modal */}
+      <AnimatePresence>
+        {isVideoOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="relative w-full h-full">
+              <button
+                onClick={handleCloseVideo}
+                className="absolute top-4 right-4 text-white text-3xl z-10"
+              >
+                ×
+              </button>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/your-video-id" // Replace with your YouTube video ID
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

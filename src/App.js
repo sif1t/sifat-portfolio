@@ -8,10 +8,12 @@ import Portfolio from './components/Portfolio ';
 import Contact from './components/Contact ';
 import Footer from './components/Footer ';
 import Navbar from './components/Navbar';
+import Butterfly from './components/Butterfly';
 
 const App = () => {
   return (
     <Router>
+      <Butterfly/>
       <div className="flex">
          <Navbar/>
         <div className="ml-16 md:ml-1/6 w-full md:w-5/6">

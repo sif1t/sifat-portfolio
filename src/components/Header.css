@@ -1,0 +1,161 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+/* Light Mode */
+.bg-light {
+  background-color: #f8f9fa; /* Soft white */
+}
+
+.text-dark {
+  color: #212529; /* Dark grey */
+}
+
+.bg-accent {
+  background-color: #007bff; /* Blue */
+}
+
+.text-light {
+  color: #ffffff; /* White */
+}
+
+.text-highlight-dark {
+  color: #007bff; /* Blue */
+}
+
+.border-highlight-dark {
+  border-color: #007bff; /* Blue */
+}
+
+.hover\:bg-highlight-dark:hover {
+  background-color: #007bff;
+}
+
+.hover\:text-light:hover {
+  color: #ffffff;
+}
+
+/* Dark Mode */
+.bg-dark {
+  background-color: #121212; /* Dark black */
+}
+
+.text-light {
+  color: #e0e0e0; /* Light grey */
+}
+
+.bg-accent-dark {
+  background-color: #0a84ff; /* Light blue */
+}
+
+.text-dark {
+  color: #212121; /* Dark grey */
+}
+
+.text-highlight {
+  color: #0a84ff; /* Light blue */
+}
+
+.border-highlight {
+  border-color: #0a84ff; /* Light blue */
+}
+
+.hover\:bg-highlight:hover {
+  background-color: #0a84ff;
+}
+
+.hover\:text-dark:hover {
+  color: #212121;
+}
+
+header {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue */
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.space-x-4 > :not(template) ~ :not(template) {
+  --space-x-reverse: 0;
+  margin-right: calc(1rem * var(--space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--space-x-reverse)));
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.md\:block {
+  display: block;
+}
+
+.md\:w-1\/2 {
+  width: 50%;
+}
+
+/* Butterfly Styles */
+.butterfly {
+  z-index: 10;
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
