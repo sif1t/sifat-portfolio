@@ -157,7 +157,7 @@ const Contact = () => {
               transition={{ duration: 0.6, ease: 'easeOut', delay: 1 }}
             >
               <AwesomeButton
-                type="primary"
+                type="primary" 
                 size="large"
                 className="awesome-button w-full"
                 variants={buttonVariants}
