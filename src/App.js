@@ -9,10 +9,15 @@ import Contact from './components/Contact ';
 import Footer from './components/Footer ';
 import Navbar from './components/Navbar';
 import Butterfly from './components/Butterfly';
+import Snake from './components/Snake';
+
+
+
 
 const App = () => {
   return (
     <Router>
+      <Snake/>
       <Butterfly/>
       <div className="flex">
          <Navbar/>

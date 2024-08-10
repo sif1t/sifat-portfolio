@@ -142,6 +142,10 @@ const About = () => {
             Web Design<br />
             Industrial Attachment Done Bd Task Limited
           </p>
+          <p className="mt-2">
+            Web Developer<br />
+            Working as Web Developer in DBC News 
+          </p>
         </motion.div>
         <motion.div
           className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg"

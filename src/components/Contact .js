@@ -78,17 +78,17 @@ const Contact = () => {
                 variants={textVariants}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
               >
-                <a href="https://facebook.com">
+                <a href="https://www.facebook.com/arifinsifat.arifinsifat/">
                   <motion.div whileHover="hover" variants={iconVariants} className="text-2xl hover:text-blue-600 dark:hover:text-blue-400">
                     <FaFacebook />
                   </motion.div>
                 </a>
-                <a href="https://github.com">
+                <a href="https://github.com/sif1t">
                   <motion.div whileHover="hover" variants={iconVariants} className="text-2xl hover:text-gray-800 dark:hover:text-gray-400">
                     <FaGithub />
                   </motion.div>
                 </a>
-                <a href="https://linkedin.com">
+                <a href="https://www.linkedin.com/in/arifeen-sifat-037a78226/">
                   <motion.div whileHover="hover" variants={iconVariants} className="text-2xl hover:text-blue-600 dark:hover:text-blue-400">
                     <FaLinkedin />
                   </motion.div>
