@@ -5,6 +5,7 @@ import 'react-awesome-button/dist/styles.css';
 import { FaPlay } from 'react-icons/fa';
 import profileImage from '../assets/sifat.jpg';
 
+
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);

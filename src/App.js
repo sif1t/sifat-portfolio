@@ -10,6 +10,8 @@ import Footer from './components/Footer ';
 import Navbar from './components/Navbar';
 import Butterfly from './components/Butterfly';
 import Snake from './components/Snake';
+import BubbleBalls from './components/BubbleBalls';
+import Butterflies from './components/Butterflies';
 
 
 
@@ -17,6 +19,8 @@ import Snake from './components/Snake';
 const App = () => {
   return (
     <Router>
+      <Butterflies/>
+      <BubbleBalls/>
       <Snake/>
       <Butterfly/>
       <div className="flex">

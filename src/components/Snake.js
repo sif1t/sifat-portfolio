@@ -7,7 +7,7 @@ const Snake = () => {
   useEffect(() => {
     const handleMouseMove = (event) => {
       setSnakeParts((prevParts) => [
-        ...prevParts.slice(-50), // Adjust the length of the snake
+        ...prevParts.slice(-30), // Adjust the length of the snake
         { x: event.clientX, y: event.clientY }
       ]);
     };
