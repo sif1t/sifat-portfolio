@@ -21,7 +21,7 @@ const Portfolio = () => {
         "Liking, commenting, and sharing posts.",
       ],
       liveLink: "https://libkdin.netlify.app/",
-      image: linkedin, // Replace with the actual image path
+      image: linkedin, 
     },
     {
       title: "Sifat Ecommearch",
@@ -31,7 +31,7 @@ const Portfolio = () => {
         "Secure Payment: Integrated payment gateways with SSL encryption for secure transactions."
       ],
       liveLink: "https://sifatecommearch.netlify.app/",
-      image: ecomars, // Replace with the actual image path
+      image: ecomars, 
     },
     {
       title: "SifTube",
@@ -55,13 +55,23 @@ const Portfolio = () => {
     },
   ];
 
-  // Gradient colors for light and dark modes
   const gradientLight = 'linear-gradient(189deg, rgba(131,58,180,1) 0%, rgba(70,41,67,1) 11%, rgba(76,51,240,1) 38%, rgba(253,29,29,1) 58%, rgba(252,176,69,1) 71%, rgba(66,172,162,1) 88%)';
   const gradientDark = 'linear-gradient(189deg, rgba(131,58,180,0.8) 0%, rgba(70,41,67,0.8) 11%, rgba(76,51,240,0.8) 38%, rgba(253,29,29,0.8) 58%, rgba(252,176,69,0.8) 71%, rgba(66,172,162,0.8) 88%)';
-
-  // Use the appropriate gradient based on theme
   const isDarkMode = document.documentElement.classList.contains('dark');
   const gradient = isDarkMode ? gradientDark : gradientLight;
+
+  const cubeVariants = {
+    animate: {
+      rotateX: [0, 360],
+      rotateY: [0, 360],
+      rotateZ: [0, 360],
+      transition: {
+        duration: 10,
+        repeat: Infinity,
+        ease: "linear",
+      },
+    },
+  };
 
   return (
     <motion.section
@@ -78,6 +88,7 @@ const Portfolio = () => {
           style={{ background: gradient }}
         />
       </div>
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {projects.map((project, index) => (
           <Fade triggerOnce key={index}>
@@ -106,6 +117,24 @@ const Portfolio = () => {
           </Fade>
         ))}
       </div>
+
+      <motion.div 
+        className="flex justify-center mt-8"
+        variants={cubeVariants}
+        animate="animate"
+      >
+        <motion.div
+          className="w-24 h-24 bg-gradient-to-r from-blue-500 to-red-500"
+          style={{
+            transformStyle: "preserve-3d",
+            transformOrigin: "center",
+          }}
+        >
+          <motion.div className="absolute w-full h-full bg-gradient-to-r from-green-400 to-blue-500" />
+          <motion.div className="absolute w-full h-full bg-gradient-to-r from-red-400 to-yellow-500" style={{ transform: "rotateY(90deg)" }} />
+          <motion.div className="absolute w-full h-full bg-gradient-to-r from-purple-400 to-pink-500" style={{ transform: "rotateX(90deg)" }} />
+        </motion.div>
+      </motion.div>
     </motion.section>
   );
 };

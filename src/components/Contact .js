@@ -106,8 +106,8 @@ const Contact = () => {
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
             >
               <AwesomeButton
-                type="primary"
-                size="large"
+                type="Ghost"
+                size="medium"
                 href="/path/to/cv.pdf"
                 className="awesome-button"
                 variants={buttonVariants}
@@ -157,8 +157,8 @@ const Contact = () => {
               transition={{ duration: 0.6, ease: 'easeOut', delay: 1 }}
             >
               <AwesomeButton
-                type="primary" 
-                size="large"
+                type="Ghost " 
+                size="medium"
                 className="awesome-button w-full"
                 variants={buttonVariants}
                 whileHover="hover"
