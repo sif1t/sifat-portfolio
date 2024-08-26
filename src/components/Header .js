@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import { FaPlay } from 'react-icons/fa';
-import profileImage from '../assets/sifat.jpg';
-
+import profileImage from '../assets/profile2.png';
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -16,7 +15,7 @@ const Header = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 3000); // Duration of text display
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -36,22 +35,22 @@ const Header = () => {
   return (
     <>
       <motion.header
-        className={`relative flex flex-col md:flex-row items-center justify-between min-h-screen px-8 md:px-12 py-20 transition-colors duration-500 ${
+        className={`relative flex flex-col md:flex-row items-center justify-between min-h-screen px-6 md:px-12 py-16 transition-colors duration-500 ${
           darkMode ? 'bg-dark text-light' : 'bg-light text-dark'
         }`}
         initial={{ opacity: 0, translateY: -50 }}
         animate={{ opacity: 1, translateY: 0 }}
         transition={{ duration: 1, ease: 'easeOut' }}
-        style={{ perspective: '1200px' }} // Enhanced perspective for depth
+        style={{ perspective: '1200px' }}
       >
         <motion.div
-          className="flex flex-col items-start md:w-1/2 space-y-10 md:space-y-12 lg:space-y-16"
+          className="flex flex-col items-start md:w-1/2 space-y-6 md:space-y-10 lg:space-y-14"
           initial={{ opacity: 0, translateX: -50 }}
           animate={{ opacity: 1, translateX: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
         >
           <motion.h1
-            className="text-4xl md:text-6xl font-bold leading-tight mb-8"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
             initial={{ opacity: 0, translateY: 20 }}
             animate={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
@@ -62,12 +61,12 @@ const Header = () => {
             </span>
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl leading-relaxed mb-8"
+            className="text-base md:text-lg lg:text-xl leading-relaxed mb-6"
             initial={{ opacity: 0, translateY: 20 }}
             animate={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.4 }}
           >
-            Hello. I’m a web designer who codes. I strive to create simple, original, and impactful user experiences. As a web designer, my passion lies in creating visually stunning and user-friendly websites that leave a lasting impression on visitors. I believe that the web is a powerful medium that allows me to blend creativity with technology to craft unique online experiences.
+            Hello. I’m a web designer who codes. I strive to create simple, original, and impactful user experiences. As a web designer, my passion lies in creating visually stunning and user-friendly websites that leave a lasting impression on visitors.
           </motion.p>
           <div className="flex items-center space-x-4">
             <AwesomeButton
@@ -95,12 +94,12 @@ const Header = () => {
           initial={{ scale: 0.8, opacity: 0, translateY: 30 }}
           animate={{ scale: 1, opacity: 1, translateY: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
-          style={{ transformStyle: 'preserve-3d' }} // Ensure 3D transformations are applied
+          style={{ transformStyle: 'preserve-3d' }}
         >
           <motion.img
             src={profileImage}
             alt="Profile"
-            className="rounded-lg"
+            className="rounded-lg w-72 sm:w-80 md:w-96 lg:w-100 xl:w-104"
             initial={{ scale: 0.8, rotateX: 10 }}
             animate={{ scale: 1, rotateX: 0 }}
             transition={{
@@ -117,7 +116,6 @@ const Header = () => {
             style={{ filter: darkMode ? 'brightness(70%)' : 'brightness(100%)' }}
           />
         </motion.div>
-        {/* Dark Mode Toggle */}
         <div className="absolute top-4 right-4">
           <button
             onClick={toggleDarkMode}
@@ -128,7 +126,6 @@ const Header = () => {
         </div>
       </motion.header>
 
-      {/* Video Modal */}
       <AnimatePresence>
         {isVideoOpen && (
           <motion.div
@@ -148,7 +145,7 @@ const Header = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/your-video-id" // Replace with your YouTube video ID
+                src="https://www.youtube.com/embed/your-video-id"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -6,11 +6,12 @@ import { motion } from 'framer-motion';
 const skills = [
   { name: 'HTML', percentage: 90 },
   { name: 'CSS', percentage: 85 },
-  { name: 'Bootstrap', percentage: 80 },
-  { name: 'JavaScript', percentage: 75 },
-  { name: 'Node.js', percentage: 70 },
-  { name: 'Vue.js', percentage: 65 },
-  { name: 'React.js', percentage: 75 },
+  { name: 'Tailwind CSS', percentage: 80 },
+  { name: 'Bootstrap', percentage: 60 },
+  { name: 'JavaScript', percentage: 80 },
+  { name: 'Node.js', percentage: 60 },
+  { name: 'Vue.js', percentage: 50 },
+  { name: 'React.js', percentage: 70 },
 ];
 
 const gradientLight = 'linear-gradient(189deg, rgba(131,58,180,1) 0%, rgba(70,41,67,1) 11%, rgba(76,51,240,1) 38%, rgba(253,29,29,1) 58%, rgba(252,176,69,1) 71%, rgba(66,172,162,1) 88%)';
