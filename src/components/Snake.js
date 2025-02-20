@@ -21,15 +21,13 @@ const Snake = () => {
 
   return (
     <div className="snake">
-      {snakeParts.map((part, index) => (
+      {snakeParts.length > 0 && snakeParts.map((part, index) => (
         <div
           key={index}
-          className="snake-part"
           style={{
             left: `${part.x}px`,
             top: `${part.y}px`,
             transform: `translate(-50%, -50%)`,
-            animation: `crawl ${2 + index / 10}s linear infinite`
           }}
         />
       ))}
